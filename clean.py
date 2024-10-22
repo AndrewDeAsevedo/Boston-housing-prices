@@ -1,46 +1,25 @@
 import csv
-from io import StringIO
+import re
 
-def clean_csv(file_path):
-    cleaned_data = []
-    with open('data.csv', 'r') as csvfile:
-        reader = csv.reader(csvfile)
-        
-        # Read header row
-        header = next(reader)
-        
+def clean_csv(input_file, output_file):
+    with open(input_file, 'r', newline='', encoding='utf-8') as infile, \
+         open(output_file, 'w', newline='', encoding='utf-8') as outfile:
+        reader = csv.reader(infile)
+        writer = csv.writer(outfile, quoting=csv.QUOTE_ALL)
+
         for row in reader:
-            cleaned_row = []
-            for cell in row:
-                # Handle newlines within quoted fields
-                if '"' in cell:
-                    cleaned_cell = cell.replace('"', '').replace('\n', '"\n"')
-                    cleaned_row.append(f'"{cleaned_cell}"')
-                else:
-                    cleaned_row.append(cell)
-            
-            cleaned_data.append(cleaned_row)
-    
-    return cleaned_data
+            cleaned_row = [clean_field(field) for field in row]
+            writer.writerow(cleaned_row)
 
-# Input file path
-input_file = 'data.csv'
+def clean_field(field):
+    # Remove any unescaped double quotes
+    field = re.sub(r'(?<!\\)"', '', field)
+    # Remove any backslashes used for escaping
+    field = field.replace('\\', '')
+    return field.strip()
 
-# Output file path
-output_file = 'out.csv'
-
-# Clean the entire file
-with open(input_file, 'r') as infile, open(output_file, 'w', newline='') as outfile:
-    reader = csv.reader(infile)
-    writer = csv.writer(outfile)
-    
-    # Write header
-    header = next(reader)
-    writer.writerow(header)
-    
-    # Clean and write rows
-    for row in reader:
-        cleaned_row = clean_csv(StringIO(' '.join(row)))
-        writer.writerow(cleaned_row)
-
-print(f"Cleaning completed. Output saved to {output_file}")
+if __name__ == "__main__":
+    input_file = "crime.csv"
+    output_file = "crime1.csv"
+    clean_csv(input_file, output_file)
+    print(f"Cleaned CSV file has been saved as {output_file}")

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boston Zip Code Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map { height: 500px; width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>Boston Zip Code Map</h1>
+    <div id="map"></div>
+    <div id="info"></div>
+
+    <script>
+        var map = L.map('map').setView([42.3601, -71.0589], 13); // Boston's latitude and longitude
+
+        // Add a tile layer (the map background)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        // Add a geojson layer for Boston's zip codes (use real GeoJSON data)
+        var geojsonLayer = L.geoJson(bostonZipcodesGeoJson, {
+            onEachFeature: function (feature, layer) {
+                layer.on('click', function () {
+                    var zipcode = feature.properties.zipcode; // Assume your GeoJSON has zipcode property
+                    fetch(`getZipcodeData.php?zipcode=${zipcode}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.error) {
+                                document.getElementById('info').innerHTML = data.error;
+                            } else {
+                                document.getElementById('info').innerHTML = `Zip Code: ${data.zipcode}<br>Data: ${data.data}`;
+                            }
+                        });
+                });
+            }
+        }).addTo(map);
+    </script>
+
+    <script>
+        // Placeholder for Boston zip codes GeoJSON data.
+        // Replace with real GeoJSON data.
+        var bostonZipcodesGeoJson = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": { "zipcode": "02118" },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [
+                            [
+                                [-71.0764, 42.3366],
+                                [-71.0698, 42.3486],
+                                [-71.0599, 42.3402],
+                                [-71.0680, 42.3337],
+                                [-71.0764, 42.3366]
+                            ]
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": { "zipcode": "02119" },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [
+                            [
+                                [-71.0842, 42.3244],
+                                [-71.0744, 42.3291],
+                                [-71.0671, 42.3199],
+                                [-71.0765, 42.3161],
+                                [-71.0842, 42.3244]
+                            ]
+                        ]
+                    }
+                }
+            ]
+        };
+    </script>
+</body>
+</html>
