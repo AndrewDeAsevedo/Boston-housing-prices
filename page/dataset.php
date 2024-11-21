@@ -118,5 +118,15 @@ $data = array_slice($data, $offset, $rowsPerPage);
             </form>
         </div>
     </div>
+     <!-- Footer Section -->
+     <footer>
+        <p>&copy; 2024 Boston Housing Prices</p>
+        <nav>
+            <ul>
+                <li><a href="privacy.php">Privacy Policy</a></li>
+                <li><a href="terms.php">Terms of Use</a></li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 </html>
