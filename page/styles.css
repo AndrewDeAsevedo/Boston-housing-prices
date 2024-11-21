@@ -20,6 +20,94 @@ h1 {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+header {
+    background-color: #333;
+    padding: 20px;
+}
+
+header .logo h1 {
+    margin: 0;
+    color: white;
+    font-size: 2rem;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #FFD700;
+}
+
+.hero {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #FF7E5F;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #FF5C00;
+}
+
+.insights {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.insight-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 30%;
+}
+
+.card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.housing-data {
+    padding: 40px 20px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -35,7 +123,7 @@ th, td {
 }
 
 th {
-    background-color: grey; /* Changed primary color to grey */
+    background-color: grey;
     color: white;
 }
 
@@ -72,7 +160,7 @@ input[type="number"] {
 }
 
 input[type="submit"] {
-    background-color: grey; /* Changed primary color to grey */
+    background-color: grey;
     color: white;
     border: none;
     border-radius: 4px;
@@ -82,5 +170,30 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #555; /* Darker grey on hover */
+    background-color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer nav a {
+    color: white;
+    text-decoration: none;
+}
+
+footer nav a:hover {
+    color: #FFD700;
 }
