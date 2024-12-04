@@ -31,6 +31,8 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+    <script src="getScores.js"></script> <!-- Include the external JS file -->
+
     <script>
         // Initialize the map centered on Boston with an appropriate zoom level
         var map = L.map('map').setView([42.3601, -71.0589], 12);
@@ -59,19 +61,8 @@
                 // Extract the neighborhood name from the feature properties
                 var neighborhoodName = feature.properties.Name; // Case-sensitive property name
 
-                console.log("Neighborhood Name:", neighborhoodName); // Debugging log
-
-                // Example scores; replace or extend this with your actual data as needed
-                var neighborhoodScores = {
-                    "Back Bay": 85,
-                    "South End": 78,
-                    "Dorchester": 72,
-                    "Cambridge": 92,
-                    "Jamaica Plain": 80
-                };
-
-                // Retrieve the score from the data or show a default message
-                var score = neighborhoodScores[neighborhoodName] || 'No score available';
+                // Get the score for the neighborhood using the function from getScores.js
+                var score = getScoreForNeighborhood(neighborhoodName);
 
                 var popupContent = `
                     <div style="text-align: center;">
