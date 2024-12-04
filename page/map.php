@@ -56,19 +56,42 @@
                 };
             },
             onEachFeature: function (feature, layer) {
-                // Add click event for each neighborhood feature
+                // Extract the neighborhood name from the feature properties
+                var neighborhoodName = feature.properties.Name; // Case-sensitive property name
+
+                console.log("Neighborhood Name:", neighborhoodName); // Debugging log
+
+                // Example scores; replace or extend this with your actual data as needed
+                var neighborhoodScores = {
+                    "Back Bay": 85,
+                    "South End": 78,
+                    "Dorchester": 72,
+                    "Cambridge": 92,
+                    "Jamaica Plain": 80
+                };
+
+                // Retrieve the score from the data or show a default message
+                var score = neighborhoodScores[neighborhoodName] || 'No score available';
+
+                var popupContent = `
+                    <div style="text-align: center;">
+                        <h4>${neighborhoodName}</h4>
+                        <p>Score: ${score}</p>
+                    </div>
+                `;
+
+                // Bind the popup to the layer
+                layer.bindPopup(popupContent);
+
+                // Add event for opening the popup when the neighborhood is clicked
                 layer.on('click', function () {
-                    var score = prompt('Enter a score for ' + feature.properties.name + ':', '0');
-                    if (score !== null) {
-                        alert('You entered a score of ' + score + ' for ' + feature.properties.name);
-                        // Optionally, send this score to a PHP script to store it in a database
-                    }
+                    layer.openPopup();
                 });
             }
         }).addTo(map);
 
         // Load GeoJSON data (assumes the file is in the same directory as this PHP file)
-        fetch('boston-neighborhoods.geojson')
+        fetch('Boston_Neighborhoods.geojson')
             .then(response => response.json())
             .then(data => {
                 neighborhoodsLayer.addData(data);
