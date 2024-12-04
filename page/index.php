@@ -79,6 +79,7 @@ $data = array_slice($data, $offset, $rowsPerPage);
         <div class="insight-cards">
             <div class="card">
                 <h4>Interactive Map</h4>
+                <a href="map.php"> click here </a>
                 <p>Click on a county to see detailed housing price data and trends.</p>
             </div>
             <div class="card">
