@@ -9,7 +9,6 @@
     <title>Interactive Boston Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
     <header>
@@ -28,48 +27,52 @@
     </header>
 
     <h2>Boston Neighborhoods Interactive Map</h2>
-    <div id="map"></div>
+    <div id="map" style="height: 600px;"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
     <script>
-        // Initialize the map
-        var map = L.map('map').setView([42.3601, -71.0589], 12); // Coordinates for Boston
+        // Initialize the map centered on Boston with an appropriate zoom level
+        var map = L.map('map').setView([42.3601, -71.0589], 12);
 
-        // Add a base map layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        // Add a CartoDB Positron tile layer for a light, Apple Maps-like appearance
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.carto.com/attributions">CARTO</a>',
             maxZoom: 19
         }).addTo(map);
 
-        // Load GeoJSON data for neighborhoods
+        // Set the map's max bounds to restrict it to the Boston area
+        var bounds = [[42.227, -71.191], [42.491, -70.885]]; // Adjust bounds as needed
+        map.setMaxBounds(bounds);
+
+        // Define a GeoJSON layer with a function for adding custom interactions
         var neighborhoodsLayer = L.geoJSON(null, {
+            style: function (feature) {
+                return {
+                    color: '#333', // Border color
+                    weight: 2, // Border thickness
+                    fillColor: '#f4a261', // Fill color
+                    fillOpacity: 0.5 // Transparency of the fill
+                };
+            },
             onEachFeature: function (feature, layer) {
+                // Add click event for each neighborhood feature
                 layer.on('click', function () {
                     var score = prompt('Enter a score for ' + feature.properties.name + ':', '0');
                     if (score !== null) {
                         alert('You entered a score of ' + score + ' for ' + feature.properties.name);
-                        // Optionally, you could send this score to a PHP script to store in a database
+                        // Optionally, send this score to a PHP script to store it in a database
                     }
                 });
             }
         }).addTo(map);
 
-        // Load the GeoJSON file (assuming it's in the same directory)
+        // Load GeoJSON data (assumes the file is in the same directory as this PHP file)
         fetch('boston-neighborhoods.geojson')
             .then(response => response.json())
             .then(data => {
                 neighborhoodsLayer.addData(data);
             });
-
-        // Set a style for the neighborhoods
-        neighborhoodsLayer.setStyle({
-            color: 'blue',
-            weight: 2,
-            opacity: 0.5,
-            fillColor: 'blue',
-            fillOpacity: 0.3
-        });
     </script>
 </body>
 </html>
