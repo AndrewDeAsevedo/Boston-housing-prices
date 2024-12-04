@@ -8,21 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Boston Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-    <style>
-        #map {
-            height: 600px;
-            width: 100%;
-        }
-        .info-box {
-            padding: 5px;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-top: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <h1>Boston Housing Prices</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="dataset.php">Dataset</a></li>
+                <li><a href="contact.php">Contact</a></li>
+                <li><a href="resources.php">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <h2>Boston Neighborhoods Interactive Map</h2>
     <div id="map"></div>
 
