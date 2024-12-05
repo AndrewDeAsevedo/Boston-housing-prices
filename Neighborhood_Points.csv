@@ -1,26 +1,26 @@
-Neighborhood,Total_Points
-East Boston,6602
-Charlestown,5430
-North End,1815
-West End,1667
-Downtown,4665
-Beacon Hill,1741
-Leather District,300
-Chinatown,881
-Bay Village,445
-Back Bay,3541
-South Boston Waterfront,2138
-South End,4934
-South Boston,8516
-Fenway,2985
-Longwood,1026
-Mission Hill,2016
-Roxbury,11345
-Dorchester,21825
-Jamaica Plain,7827
-Allston,3575
-Brighton,6886
-Mattapan,4430
-Roslindale,5895
-West Roxbury,8790
-Hyde Park,7590
+Neighborhood,Total_Points,Normalized_Points
+East Boston,6602,1404.6808510638298
+Charlestown,5430,3878.571428571429
+North End,1815,5041.666666666667
+West End,1667,3334.0
+Downtown,4665,3110.0
+Beacon Hill,1741,2901.666666666667
+Leather District,300,15789.473684210527
+Chinatown,881,4195.238095238095
+Bay Village,445,7120.0
+Back Bay,3541,2213.125
+South Boston Waterfront,2138,689.6774193548387
+South End,4934,6949.295774647888
+South Boston,8516,2747.0967741935483
+Fenway,2985,2407.2580645161293
+Longwood,1026,8208.0
+Mission Hill,2016,2688.0
+Roxbury,11345,4538.0
+Dorchester,21825,3637.5
+Jamaica Plain,7827,1778.8636363636363
+Allston,3575,867.7184466019418
+Brighton,6886,2476.978417266187
+Mattapan,4430,1582.1428571428573
+Roslindale,5895,1593.2432432432431
+West Roxbury,8790,1906.7245119305855
+Hyde Park,7590,1724.9999999999998
