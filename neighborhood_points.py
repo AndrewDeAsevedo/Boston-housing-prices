@@ -20,7 +20,9 @@ points_mapping = {
     "open_space_in_neighborhoods.csv": 10,
     "Pedestrian_Ramps.csv": 5,
     "Community_Centers.csv": 5,
-    "Public_schools.csv": 5
+    "Public_schools.csv": 5,
+    "crimes_by_neighborhood.csv": -0.1
+
 }
 
 # Neighborhood population
