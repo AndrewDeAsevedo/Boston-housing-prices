@@ -61,18 +61,20 @@
                 // Extract the neighborhood name from the feature properties
                 var neighborhoodName = feature.properties.Name; // Case-sensitive property name
 
-                // Fetch the score asynchronously
-                getScoreForNeighborhood(neighborhoodName).then(score => {
-                    var popupContent = `
-                        <div style="text-align: center;">
-                            <h4>${neighborhoodName}</h4>
-                            <p>Score: ${score}</p>
-                        </div>
-                    `;
+                // Get the score for the neighborhood using the function from getScores.js
+                var score = getScoreForNeighborhood(neighborhoodName);
 
-                    layer.bindPopup(popupContent);
-                });
+                var popupContent = `
+                    <div style="text-align: center;">
+                        <h4>${neighborhoodName}</h4>
+                        <p>Score: ${score}</p>
+                    </div>
+                `;
 
+                // Bind the popup to the layer
+                layer.bindPopup(popupContent);
+
+                // Add event for opening the popup when the neighborhood is clicked
                 layer.on('click', function () {
                     layer.openPopup();
                 });

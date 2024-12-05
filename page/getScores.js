@@ -1,20 +1,17 @@
+const fs = require('fs');
+const path = require('path');
+const csvParser = require('csv-parser');
+
 // This function will retrieve the scores for each neighborhood
-async function getNeighborhoodScores() {
-    const response = await fetch('Neighborhood_Points.csv');
-    const csvText = await response.text();
-
-    // Parse CSV data
-    const rows = csvText.split('\n').slice(1); // Skip the header row
-    const scores = {};
-
-    rows.forEach(row => {
-        if (row.trim()) { // Skip empty lines
-            const [neighborhood, , normalizedPoints] = row.split(',');
-            scores[neighborhood.trim()] = parseFloat(normalizedPoints.trim());
-        }
-    });
-
-    return scores;
+function getNeighborhoodScores() {
+    // Example scores data; you could replace this with an API call or a more complex data retrieval logic
+    return {
+        "Back Bay": 85,
+        "South End": 20,
+        "Dorchester": 72,
+        "Cambridge": 92,
+        "Jamaica Plain": 80
+    };
 }
 
 // This function will be called when a neighborhood is clicked to get the score
