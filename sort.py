@@ -5,7 +5,7 @@ import pandas as pd
 neighborhoods_gdf = gpd.read_file('page/Boston_Neighborhoods.geojson')
 
 # Load the new GeoJSON file for non-public schools
-non_public_schools_gdf = gpd.read_file('Canopy.geojson')
+non_public_schools_gdf = gpd.read_file('community_centers.geojson')
 
 # Ensure both are in the same CRS (Coordinate Reference System)
 non_public_schools_gdf = non_public_schools_gdf.to_crs(neighborhoods_gdf.crs)
@@ -19,7 +19,7 @@ print(joined_gdf.columns)  # List the column names
 
 # Modify the groupby line based on the actual neighborhood column name
 # Replace 'Name' with the correct neighborhood column name if different
-station_counts = joined_gdf.groupby('Name').size().reset_index(name='Canopy_Count')
+station_counts = joined_gdf.groupby('Name').size().reset_index(name='Community_Center_Count')
 
 # Save the output to a CSV file
-station_counts.to_csv('Canopy.csv', index=False)
+station_counts.to_csv('Community_Centers.csv', index=False)
