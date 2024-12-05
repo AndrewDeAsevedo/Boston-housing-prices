@@ -80,12 +80,12 @@ $data = array_slice($data, $offset, $rowsPerPage);
             <div class="card">
                 <h4>Interactive Map</h4>
                 <a href="map.php"> click here </a>
-                <p>Click on a county to see detailed housing price data and trends.</p>
+                <p>Click on a county to see a score.</p>
             </div>
             <div class="card">
                 <h4>Price Prediction</h4>
                 <a href="prediction.php">click here</a>
-                <p>Explore the price changes over time in different Boston counties.</p>
+                <p>View a prediction of a house's price given some variables.</p>
             </div>
         </div>
     </section>
