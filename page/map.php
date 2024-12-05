@@ -1,5 +1,22 @@
 <?php
-// PHP code can be used here to load or process data if needed, but this basic example will be served via JavaScript
+// Function to load scores (Normalized_Points) from Neighborhood_Points.csv
+function getNormalizedScores() {
+    $scores = [];
+    if (($handle = fopen("Neighborhood_Points.csv", "r")) !== FALSE) {
+        // Read the header row
+        $headers = fgetcsv($handle);
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            $neighborhood = $data[0]; // Neighborhood name
+            $normalizedPoints = isset($data[2]) ? (float) $data[2] : null; // Normalized Points column
+            if ($neighborhood && $normalizedPoints !== null) {
+                // Multiply normalized points by 100 to display as percentages
+                $scores[$neighborhood] = $normalizedPoints * 100;
+            }
+        }
+        fclose($handle);
+    }
+    return json_encode($scores); // Return scores as a JSON object
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +48,18 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
-    <script src="getScores.js"></script> <!-- Include the external JS file -->
 
     <script>
+        // Neighborhood normalized scores loaded from PHP
+        const neighborhoodScores = <?php echo getNormalizedScores(); ?>;
+
+        // Function to get normalized points for a given neighborhood
+        function getNormalizedPoints(neighborhoodName) {
+            return neighborhoodScores[neighborhoodName] 
+                ? `${neighborhoodScores[neighborhoodName].toFixed(2)}%` 
+                : 'No score available';
+        }
+
         // Initialize the map centered on Boston with an appropriate zoom level
         var map = L.map('map').setView([42.3601, -71.0589], 12);
 
@@ -61,13 +87,13 @@
                 // Extract the neighborhood name from the feature properties
                 var neighborhoodName = feature.properties.Name; // Case-sensitive property name
 
-                // Get the score for the neighborhood using the function from getScores.js
-                var score = getScoreForNeighborhood(neighborhoodName);
+                // Get the normalized points for the neighborhood
+                var normalizedPoints = getNormalizedPoints(neighborhoodName);
 
                 var popupContent = `
                     <div style="text-align: center;">
                         <h4>${neighborhoodName}</h4>
-                        <p>Score: ${score}</p>
+                        <p>Normalized Points: ${normalizedPoints}</p>
                     </div>
                 `;
 
