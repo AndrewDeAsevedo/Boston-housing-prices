@@ -53,21 +53,22 @@ $data = array_slice($data, $offset, $rowsPerPage);
 </head>
 <body>
 <header>
-        <div class="logo">
-            <h1>Boston Housing Prices</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="dataset.php">Dataset</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <li><a href="resources.php">Resources</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="container">
-        <h1>Dataset</h1>
+    <div class="logo">
+        <h1>Boston Housing Prices</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="about.php">About</a></li>
+            <li><a href="dataset.php">Dataset</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="resources.php">Resources</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <h1>Dataset</h1>
+    <div class="table-container">
         <table>
             <thead>
                 <tr>
@@ -108,25 +109,25 @@ $data = array_slice($data, $offset, $rowsPerPage);
                 <?php endforeach; ?>
             </tbody>
         </table>
-
-        <div class="pagination">
-            <p>Total Pages: <?php echo $totalPages; ?></p>
-            <form method="get">
-                <input type="number" name="page" min="1" max="<?php echo $totalPages; ?>" value="<?php echo $currentPage; ?>">
-                <input type="hidden" name="sort" value="<?php echo isset($sortField) ? $sortField : ''; ?>">
-                <input type="submit" value="Go">
-            </form>
-        </div>
     </div>
-     <!-- Footer Section -->
-     <footer>
-        <p>&copy; 2024 Boston Housing Prices</p>
-        <nav>
-            <ul>
-                <li><a href="privacy.php">Privacy Policy</a></li>
-                <li><a href="terms.php">Terms of Use</a></li>
-            </ul>
-        </nav>
-    </footer>
+
+    <div class="pagination">
+        <p>Total Pages: <?php echo $totalPages; ?></p>
+        <form method="get">
+            <input type="number" name="page" min="1" max="<?php echo $totalPages; ?>" value="<?php echo $currentPage; ?>">
+            <input type="hidden" name="sort" value="<?php echo isset($sortField) ? $sortField : ''; ?>">
+            <input type="submit" value="Go">
+        </form>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2024 Boston Housing Prices</p>
+    <nav>
+        <ul>
+            <li><a href="privacy.php">Privacy Policy</a></li>
+            <li><a href="terms.php">Terms of Use</a></li>
+        </ul>
+    </nav>
+</footer>
 </body>
 </html>
