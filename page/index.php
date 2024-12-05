@@ -83,11 +83,8 @@ $data = array_slice($data, $offset, $rowsPerPage);
                 <p>Click on a county to see detailed housing price data and trends.</p>
             </div>
             <div class="card">
-                <h4>Data Points</h4>
-                <p>View average housing prices, county scores, and other key data points.</p>
-            </div>
-            <div class="card">
-                <h4>Price Trends</h4>
+                <h4>Price Prediction</h4>
+                <a href="prediction.php">click here</a>
                 <p>Explore the price changes over time in different Boston counties.</p>
             </div>
         </div>
