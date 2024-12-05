@@ -3,7 +3,7 @@ import os
 
 # List of neighborhoods
 neighborhoods = [
-    "East Boston", "Charleston", "North End", "West End", "Downtown", 
+    "East Boston", "Charlestown", "North End", "West End", "Downtown", 
     "Beacon Hill", "Leather District", "Chinatown", "Bay Village", 
     "Back Bay", "South Boston Waterfront", "South End", "South Boston", 
     "Fenway", "Longwood", "Mission Hill", "Roxbury", "Dorchester", 
@@ -13,7 +13,7 @@ neighborhoods = [
 
 # Points mapping for each CSV
 points_mapping = {
-    "non_Public_Schools.csv": 5,
+    "non_public_schools_in_neighborhoods.csv": 5,
     "hospitals.csv": 10,
     "bluebikes_in_neighborhoods.csv": 5,
     "Charging_spaces.csv": 1,
