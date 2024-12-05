@@ -1,4 +1,4 @@
 pandas==2.2.3
 streamlit==1.39.0
 ydata_profiling==4.11.0
-flask-cors
+scikit-learn
